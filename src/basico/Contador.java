@@ -13,6 +13,19 @@ public class Contador extends Application {
 
 	private int contador = 0;
 	
+	private void validateNumberLabel(Label label) {
+		label.setText(Integer.toString(contador));
+		
+		label.getStyleClass().remove("positiveCount");
+		label.getStyleClass().remove("negativeCount");
+		
+		if (contador > 0) {
+			label.getStyleClass().add("positiveCount");
+		} else if (contador < 0) {
+			label.getStyleClass().add("negativeCount");
+		}
+	}
+	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		
@@ -28,13 +41,13 @@ public class Contador extends Application {
 		buttonDecrement.getStyleClass().add("buttons");
 		buttonDecrement.setOnAction(e -> {
 			contador--;
-			numberLabel.setText(Integer.toString(contador));
+			validateNumberLabel(numberLabel);
 		});
 		
 		buttonIncrement.getStyleClass().add("buttons");
 		buttonIncrement.setOnAction(e -> {
 			contador++;
-			numberLabel.setText(Integer.toString(contador));
+			validateNumberLabel(numberLabel);
 		});
 		
 		HBox buttonsBox = new HBox();
