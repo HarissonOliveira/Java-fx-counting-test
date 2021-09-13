@@ -19,6 +19,9 @@ public class Contador extends Application {
 		Label titleLabel = new Label("Contador");
 		Label numberLabel = new Label("0");
 		
+		titleLabel.getStyleClass().add("title");
+		numberLabel.getStyleClass().add("number");
+		
 		Button buttonIncrement = new Button("+");
 		Button buttonDecrement = new Button("-");
 		
@@ -38,14 +41,20 @@ public class Contador extends Application {
 		buttonsBox.getChildren().add(buttonDecrement);
 		buttonsBox.getChildren().add(buttonIncrement);
 		
-		VBox mainBox = new VBox();
-		mainBox.setSpacing(10);
-		mainBox.setAlignment(Pos.CENTER);
-		mainBox.getChildren().add(titleLabel);
-		mainBox.getChildren().add(numberLabel);
-		mainBox.getChildren().add(buttonsBox);
+		VBox contentBox = new VBox();
+		contentBox.getStyleClass().add("content");
+		contentBox.setSpacing(10);
+		contentBox.setAlignment(Pos.CENTER);
+		contentBox.getChildren().add(titleLabel);
+		contentBox.getChildren().add(numberLabel);
+		contentBox.getChildren().add(buttonsBox);
 		
-		Scene mainScene = new Scene(mainBox, 400, 400);
+		String pathCss = getClass().getResource("/basico/Contador.css").toExternalForm();
+		
+		Scene mainScene = new Scene(contentBox, 400, 400);
+		
+		mainScene.getStylesheets().add(pathCss);
+		mainScene.getStylesheets().add("https://fonts.googleapis.com/css2?family=Oswald");
 		
 		primaryStage.setScene(mainScene);
 		primaryStage.show();
